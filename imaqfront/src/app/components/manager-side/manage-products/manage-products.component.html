@@ -1,0 +1,50 @@
+<div class="row align-items-center">
+    <div class="col-md-12 d-flex">
+        <h1 class="display-6 me-auto">Listado de Productos</h1>
+        <button class="btn btn-primary" (click)="updateList()">Refrescar</button>&nbsp;
+        <button class="btn btn-success" (click)="newProduct()">+ Nuevo Producto</button>
+    </div>
+</div>
+<h6>Filtros</h6>
+<form [formGroup]="filtros">
+    <div class="border rounded px-3 py-2">
+        <div class="col-1 d-flex align-items-left">
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="eliminados" formControlName="eliminados">
+                <label for="eliminados" class="form-check-label">Eliminados:</label>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="table-responsive">
+    <table class="table table-bordered table-hover table-striped my-3">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th class="big-screen" scope="col" colspan="3">Descripcion</th>
+                <th scope="col">Tipo de Producto</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Codigo Parte</th>
+                <th scope="col">Dado de baja</th>
+                <th scope="col" colspan="3">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let prod of list">
+                <td class="text-end">{{ prod.idProducto }}</td>
+                <td>{{ prod.nombre }}</td>
+                <td class="big-screen" colspan="3">{{ prod.descripcion | slice:0:30}}...</td>
+                <td>{{ prod.tipoProducto }}</td>
+                <td class="text-end">{{ prod.precio | currency: 'ARS' }} </td>
+                <td>{{ prod.codigoParte }} </td>
+                <td>{{ prod.activo ? 'NO' : 'SI' }}</td>
+                <td><app-product-card [product]="prod" [modalId]="prod.idProducto"></app-product-card></td>
+                <td class="text-center"><button class="btn btn-warning"
+                        (click)="editProduct(prod.idProducto)">Editar</button></td>
+                <td class="text-center"><app-delete-product [id]="prod.idProducto" (onDeleted)="updateList()"
+                        [isDisabled]="!prod.activo"></app-delete-product></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

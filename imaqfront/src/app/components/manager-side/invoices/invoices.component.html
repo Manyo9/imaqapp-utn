@@ -1,0 +1,202 @@
+<h1 class="display-6">
+  Nuevo presupuesto
+</h1>
+<div class="col-8">
+  <form [formGroup]="formg" class="my-4">
+    <div class="form-group">
+      <div class="row mb-3">
+        <div class="col-md-3">
+          <label for="idTipoPresupuesto" class="form-label">Presupuesto para</label>
+          <input type="hidden" class="form-control" id="idTipoPresupuesto" formControlName="idTipoPresupuesto" readonly>
+          <input type="text" class="form-control" id="tipoPresupuesto"
+            [value]="mapInvoiceType(this.formg.get('idTipoPresupuesto')?.value)" readonly>
+        </div>
+        <div class="col-md-3">
+          <label for="cuit" class="form-label required">CUIT (sin guiones)</label>
+          <input type="text" class="form-control" id="cuit" formControlName="cuit"
+            [class.is-invalid]="formg.controls['cuit'].errors && formg.controls['cuit'].touched">
+          <span class="invalid-feedback">
+            <div *ngIf="formg.controls['cuit'].hasError('required')">Debe ingresar un CUIT</div>
+            <div *ngIf="formg.controls['cuit'].hasError('minlength')">Ingrese un CUIT válido.</div>
+            <div *ngIf="formg.controls['cuit'].hasError('maxlength')">Ingrese un CUIT válido.</div>
+          </span>
+        </div>
+        <div class="col-md-3">
+          <label for="fechaCreacion" class="form-label required">Fecha de creación</label>
+          <input type="date" class="form-control" id="fechaCreacion" formControlName="fechaCreacion"
+            [class.is-invalid]="formg.controls['fechaCreacion'].errors && formg.controls['fechaCreacion'].touched">
+        </div>
+        <div class="col-md-3">
+          <label for="diasValidez" class="form-label">Días de validez</label>
+          <input type="number" min="1" class="form-control" id="diasValidez" formControlName="diasValidez"
+            [class.is-invalid]="formg.controls['diasValidez'].errors && formg.controls['diasValidez'].touched">
+          <span class="invalid-feedback">
+            <div *ngIf="formg.controls['diasValidez'].hasError('required')">Debe ingresar un CUIT</div>
+            <div *ngIf="formg.controls['diasValidez'].hasError('min')">Ingrese un valor válido.</div>
+            <div *ngIf="formg.controls['diasValidez'].hasError('max')">Ingrese un valor válido.</div>
+          </span>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="nombreContacto" class="form-label required">Atención</label>
+          <input type="text" class="form-control" id="nombreContacto" formControlName="nombreContacto"
+            [class.is-invalid]="formg.controls['nombreContacto'].errors && formg.controls['nombreContacto'].touched">
+          <span class="invalid-feedback">
+            <div *ngIf="formg.controls['nombreContacto'].hasError('required')">Debe ingresar un
+              nombre de contacto.
+            </div>
+            <div *ngIf="formg.controls['nombreContacto'].hasError('maxlength')">El límite es de 64
+              caracteres.</div>
+          </span>
+        </div>
+        <div class="col-md-6">
+          <label for="razonSocial" class="form-label required">Razón social</label>
+          <input type="text" class="form-control" id="razonSocial" formControlName="razonSocial"
+            [class.is-invalid]="formg.controls['razonSocial'].errors && formg.controls['razonSocial'].touched">
+          <span class="invalid-feedback">
+            <div *ngIf="formg.controls['razonSocial'].hasError('required')">Debe ingresar una razón
+              social.
+            </div>
+            <div *ngIf="formg.controls['razonSocial'].hasError('maxlength')">El límite es de 64
+              caracteres.
+            </div>
+          </span>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-9">
+          <label for="direccion" class="form-label required">Dirección</label>
+          <input type="text" class="form-control" id="direccion" formControlName="direccion"
+            [class.is-invalid]="formg.controls['direccion'].errors && formg.controls['direccion'].touched">
+          <span class="invalid-feedback">
+            <div *ngIf="formg.controls['direccion'].hasError('required')">Debe ingresar una dirección.
+            </div>
+            <div *ngIf="formg.controls['direccion'].hasError('maxlength')">El límite es de 64 caracteres.
+            </div>
+          </span>
+        </div>
+        <div class="col-md-3">
+          <label for="porcentajeImpuestos" class="form-label required">IVA</label>
+          <select id="selectPorcentajeImpuestos" class="form-select" id="porcentajeImpuestos"
+            formControlName="porcentajeImpuestos">
+            <option value="21.0">21,0%</option>
+            <option value="10.5">10,5%</option>
+          </select>
+          <span class="invalid-feedback">
+            <div *ngIf="formg.controls['porcentajeImpuestos'].hasError('required')">Seleccione un porcentaje de
+              impuesto.
+            </div>
+          </span>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-12 mb-3">
+          <label for="observaciones" class="form-label">Observaciones</label>
+          <textarea type="text" class="form-control" id="observaciones" formControlName="observaciones" rows="3"
+            [class.is-invalid]="formg.controls['observaciones'].errors && formg.controls['observaciones'].touched"></textarea>
+          <span class="invalid-feedback">
+            <div *ngIf="formg.controls['observaciones'].hasError('required')">Ingrese un comentario.</div>
+            <div *ngIf="formg.controls['observaciones'].hasError('maxlength')">El límite es de 512
+              caracteres.
+            </div>
+          </span>
+        </div>
+      </div>
+    </div>
+  </form>
+  <h5>Agregar detalle:</h5>
+  <form [formGroup]="formdet">
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-2 mb-3">
+          <label for="cantidad" class="form-label required">Cantidad</label>
+          <input type="number" min="1" class="form-control" id="cantidad" formControlName="cantidad"
+            [class.is-invalid]="formdet.controls['cantidad'].errors && formdet.controls['cantidad'].touched">
+          <span class="invalid-feedback">
+            <div *ngIf="formdet.controls['cantidad'].hasError('required')">Debe ingresar una cantidad.</div>
+            <div *ngIf="formdet.controls['cantidad'].hasError('min')">Ingrese un valor válido.</div>
+            <div *ngIf="formdet.controls['cantidad'].hasError('max')">Ingrese un valor válido.</div>
+          </span>
+        </div>
+        <div class="col-md-2 mb-3">
+          <label for="plazoEntrega" class="form-label">Plazo entrega</label>
+          <input type="number" min="1" class="form-control" placeholder="días" id="plazoEntrega"
+            formControlName="plazoEntrega"
+            [class.is-invalid]="formdet.controls['plazoEntrega'].errors && formdet.controls['plazoEntrega'].touched">
+          <span class="invalid-feedback">
+            <div *ngIf="formdet.controls['plazoEntrega'].hasError('required')">Ingrese un plazo de entrega.</div>
+            <div *ngIf="formdet.controls['plazoEntrega'].hasError('min')">Ingrese un valor válido.</div>
+            <div *ngIf="formdet.controls['plazoEntrega'].hasError('max')">Ingrese un valor válido.</div>
+          </span>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="precioUnitario" class="form-label required">Precio Unitario</label>
+          <input type="number" min="-9999999999" class="form-control" id="precioUnitario"
+            formControlName="precioUnitario"
+            [class.is-invalid]="formdet.controls['precioUnitario'].errors && formdet.controls['precioUnitario'].touched">
+          <span class="invalid-feedback">
+            <div *ngIf="formdet.controls['precioUnitario'].hasError('required')">Ingrese un precio unitario.</div>
+            <div *ngIf="formdet.controls['precioUnitario'].hasError('min')">Ingrese un valor válido.</div>
+            <div *ngIf="formdet.controls['precioUnitario'].hasError('max')">Ingrese un valor válido.</div>
+          </span>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="precioTotal" class="form-label">Precio Total</label>
+          <input type="number" class="form-control" id="plazoEntrega"
+            [value]="formdet.get('cantidad')!.value * formdet.get('precioUnitario')!.value" readonly>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 mb-3">
+          <label for="descripcion" class="form-labelrequired">Descripción</label>
+          <textarea type="text" class="form-control" id="descripcion" formControlName="descripcion" rows="3"
+            [class.is-invalid]="formdet.controls['descripcion'].errors && formdet.controls['descripcion'].touched"></textarea>
+          <span class="invalid-feedback">
+            <div *ngIf="formdet.controls['descripcion'].hasError('required')">Ingrese un comentario.</div>
+            <div *ngIf="formdet.controls['descripcion'].hasError('maxlength')">El límite es de 512
+              caracteres.
+            </div>
+          </span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 mb-3 py-3">
+          <button class="btn btn-success" [disabled]="!formdet.valid" (click)="addDetail()">Agregar</button>&nbsp;
+          <button class="btn btn-secondary" (click)="clearDetailForm()">Limpiar</button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <h5>
+    Detalles agregados
+  </h5>
+  <table class="table align-middle">
+    <thead>
+      <tr>
+        <th scope="col">Cantidad</th>
+        <th scope="col">Descripcion</th>
+        <th scope="col">Plazo de entrega</th>
+        <th scope="col">Precio Unitario</th>
+        <th scope="col">Precio Total</th>
+        <th scope="col" colspan="2">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let d of details">
+        <td>{{ d.cantidad }}</td>
+        <td>{{ d.descripcion }}</td>
+        <td>{{ d.plazoEntrega }} <span *ngIf="d.plazoEntrega">días</span></td>
+        <td>{{ d.precioUnitario }}</td>
+        <td>{{ d.cantidad * d.precioUnitario }}</td>
+        <td><app-edit-invoice-detail (onEdit)="editDetail($event)" [detail]="d"
+            [modalId]="getDetailIndex(details, d)"></app-edit-invoice-detail></td>
+        <td><button class="boton btn btn-danger bi bi-trash" (click)="removeDetail(d)"></button></td>
+    </tbody>
+  </table>
+  <div class="row mb-3">
+    <button class="btn btn-primary" [disabled]="!formg.valid || details.length === 0"
+      (click)="save()">Guardar</button>&nbsp;
+    <button class="btn btn-danger" (click)="cancel()">Cancelar</button>
+  </div>
+</div>

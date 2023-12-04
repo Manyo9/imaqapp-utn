@@ -1,0 +1,54 @@
+<div class="row align-items-center">
+    <div class="col-md-12 d-flex">
+        <h1 class="display-6 me-auto">Listado de Ofertas</h1>
+        <button class="btn btn-primary" (click)="updateList()">Refrescar</button>&nbsp;
+        <button class="btn btn-success" (click)="newOffer()">+ Nueva oferta</button>
+    </div>
+</div>
+<h6>Filtros</h6>
+<form [formGroup]="filtros">
+    <div class="border rounded px-3 py-2">
+        <div class="col-12 d-flex align-items-left">
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="vigentes" formControlName="vigentes">
+                <label for="vigentes" class="form-check-label">Solo vigentes:</label>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="table-responsive">
+    <table class="table table-bordered table-hover table-striped my-3">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col" class="big-screen" colspan="3">Descripcion</th>
+                <th scope="col">Fecha de inicio</th>
+                <th scope="col">Fecha de fin</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Vendida</th>
+                <th scope="col" colspan="4">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let o of list">
+                <td class="text-end">{{ o.idOferta }}</td>
+                <td>{{ o.nombre }}</td>
+                <td colspan="3" class="width-300" class="big-screen"><span>{{ o.descripcion}}</span></td>
+                <td>{{ o.fechaInicio | date: 'medium'}}</td>
+                <td>{{ o.fechaFin | date: 'medium'}}</td>
+                <td class="text-end">{{ o.precio | currency: 'ARS' }} </td>
+                <td>{{ o.vendida ? 'SI' : 'NO' }}</td>
+                <td class="text-center"><button class="btn btn-primary bi bi-search"
+                        (click)="seeDetails(o.idOferta)"></button></td>
+                <td class="text-center"><button class="btn btn-warning" (click)="editOffer(o.idOferta)">Editar</button>
+                </td>
+                <td class="text-center"><app-mark-sold-offer [offer]="o"
+                        (onMarked)="updateList()"></app-mark-sold-offer>
+                </td>
+                <td class=" text-center"><app-cancel-offer [offer]="o" (onDeleted)="updateList()"></app-cancel-offer>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

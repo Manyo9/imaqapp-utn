@@ -1,0 +1,49 @@
+<div class="row align-items-center">
+    <div class="col-md-12 d-flex">
+        <h1 class="display-6 me-auto">Listado de Proveedores</h1>
+        <button class="btn btn-primary" (click)="updateList()">Refrescar</button>&nbsp;
+        <button class="btn btn-success" (click)="newSupplier()">+ Nuevo Proveedor</button>
+    </div>
+</div>
+<h6>Filtros</h6>
+<form [formGroup]="filtros">
+    <div class="border rounded px-3 py-2">
+        <div class="col-1 d-flex align-items-left">
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="eliminados" formControlName="eliminados">
+                <label for="eliminados" class="form-check-label">Eliminados:</label>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="table-responsive">
+    <table class="table table-bordered table-hover table-striped my-3">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">CUIT</th>
+                <th scope="col">Razon Social</th>
+                <th scope="col">Nombre del contacto</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Teléfono</th>
+                <th scope="col">Dado de baja</th>
+                <th scope="col" colspan="3">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let supp of list">
+                <td class="text-end">{{ supp.idProveedor }}</td>
+                <td>{{ supp.cuit }}</td>
+                <td>{{ supp.razonSocial }}</td>
+                <td>{{ supp.nombreContacto }}</td>
+                <td>{{ supp.email }} </td>
+                <td>{{ supp.telefono }}</td>
+                <td>{{ supp.activo ? 'NO' : 'SI' }}</td>
+                <td class="text-center"><button class="btn btn-warning"
+                        (click)="editSupplier(supp.idProveedor)">Editar</button></td>
+                <td class="text-center"><app-delete-supplier [id]="supp.idProveedor" (onDeleted)="updateList()"
+                        [isDisabled]="!supp.activo"></app-delete-supplier></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

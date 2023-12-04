@@ -1,0 +1,31 @@
+input, textarea {
+    border-color: gray;
+    border-width: 1px;
+}
+
+.boton {
+    height: fit-content;
+    width: fit-content;
+}
+.selected-machines-list {
+    height: 12rem;
+    overflow-y: scroll;
+}
+.machines-list {
+    height: 12rem;
+    overflow-y: scroll;
+}
+@media (min-width: 768px) {
+    .machines-list {
+        height: 41rem;
+        overflow-y: scroll;
+    }
+    .small-screen {
+        display: none !important;
+    }
+  }
+  @media (max-width: 767px) {
+    .big-screen {
+        display: none !important;
+    }
+  }

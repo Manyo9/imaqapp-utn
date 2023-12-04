@@ -1,0 +1,26 @@
+<div id="window" class="container center border border-secondary rounded py-5 px-5">
+    <h1 class="display-6 text-center">Mi solicitud</h1>
+    <div class="mb-3">
+        <div class="row">
+            ID: {{ request.idSolicitud }}
+        </div>
+    </div>
+    <div class="mb-3">
+        <div class="row">
+            Estado: {{ request.estadoSolicitud }}
+        </div>
+    </div>
+    <div class="mb-3">
+        <div class="row">
+            Tipo de solicitud: {{ request.tipoSolicitud }}
+        </div>
+    </div>
+    <div class="mb-3">
+        <div class="row">
+            Razon Social: {{ request.razonSocial }}
+        </div>
+    </div>
+    <div class="row justify-content-between">
+        <button type="submit" class="btn btn-danger" (click)="cancelRequest()">Cancelar Solicitud</button>
+    </div>
+</div>

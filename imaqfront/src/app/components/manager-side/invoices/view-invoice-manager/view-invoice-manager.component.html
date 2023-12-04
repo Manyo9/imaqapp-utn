@@ -1,0 +1,113 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary bi bi-search" data-bs-toggle="modal"
+    attr.data-bs-target="#modal{{idPresupuesto}}">Ver Presupuesto</button>
+
+<!-- Modal -->
+<div class="modal modal-xl fade" [id]="'modal'+idPresupuesto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="d-flex justify-content-center my-2">
+                <div class="card p-2" style="width: 60rem;" id="presupuesto">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <img src="../../../../../assets/img/small-logo.jpg" class="aux" style="height: 4rem;">
+                        <div class="aux">
+                            Presupuesto #{{invoice.idPresupuesto}} para {{ invoice.tipoPresupuesto }}
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-8 border-0 py-2 px-3">
+                                <strong>A: </strong>{{invoice.razonSocial}}<br>
+                                <strong>Dirección: </strong>{{invoice.direccion}}<br>
+                                <strong>Atención: </strong>{{invoice.nombreContacto}}<br>
+                                <strong>CUIT: </strong> {{invoice.cuit | slice:0:2}}-{{invoice.cuit | slice:2:10}}-{{invoice.cuit |
+                                slice:10:11}}
+                            </div>
+                            <div class="col-4 text-end">
+                                <strong>Fecha: </strong>{{invoice.fechaCreacion | date: 'shortDate'}}<br>
+                            </div>
+                        </div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Cantidad</th>
+                                    <th scope="col">Descripcion</th>
+                                    <th scope="col">Plazo entrega</th>
+                                    <th scope="col">Precio Unitario</th>
+                                    <th scope="col">Precio Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let d of details">
+                                    <td class="text-center">{{ d.cantidad }}</td>
+                                    <td>{{ d.descripcion }}</td>
+                                    <td>{{ d.plazoEntrega }} <span *ngIf="d.plazoEntrega">días</span></td>
+                                    <td>{{ d.precioUnitario | currency: 'ARS'}}</td>
+                                    <td>{{ d.cantidad * d.precioUnitario | currency: 'ARS'}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="row">
+                            <div class="col-7">
+                                <strong>Observaciones: </strong><br>
+                                {{invoice.observaciones}}<br>
+                            </div>
+                            <div class="col-5 text-end">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <strong>Neto gravado:</strong>
+                                    </div>
+                                    <div class="col-6">
+                                        {{ netoGravado | currency : 'ARS' }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <strong>IVA {{invoice.porcentajeImpuestos}}%: </strong>
+                                    </div>
+                                    <div class="col-6">
+                                        {{ netoGravado * (invoice.porcentajeImpuestos/100) | currency : 'ARS'}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <strong>Otro:</strong>
+                                    </div>
+                                    <div class="col-6">
+                                        -
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-7">
+                                <strong>Validez de la oferta: </strong> {{invoice.diasValidez}} días.
+                            </div>
+                            <div class="col-5">
+                                <div class="row">
+                                    <div class="col-6 text-end">
+                                        <strong>Total:</strong>
+                                    </div>
+                                    <div class="col-6 text-end">
+                                        <strong>{{ total | currency: 'ARS' }}</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <strong>INTER-MAQ Servicios Industriales S.A.</strong><br>
+                        <strong>Rio Segundo 1341 - B° Altamira - 5006 - Córdoba - Argentina</strong><br>
+                        <strong>Teléfono y fax: (0351) 4584596</strong><br>
+                        <strong>E-mail: info@inter-maq.com.ar | Web: www.inter-maq.com.ar</strong><br>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer m-3">
+                <button type="button" class="btn btn-secondary mx-1" (click)="toPDF()">Descargar PDF</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+<div class="row align-items-center">
+    <div class="col-md-12 d-flex">
+        <h1 class="display-6 me-auto">Listado de Solicitudes</h1>
+        <button class="btn btn-primary" (click)="updateList()">Refrescar</button>&nbsp;
+    </div>
+</div>
+<form [formGroup]="filtros">
+    <h6>Filtros</h6>
+    <div class="border rounded px-3 py-2">
+        <div class="row">
+            <div class="col-sm-3 d-inline-flex align-items-center">
+                <label for="idEstadoSolicitud" class="form-label m-0 ">Estado&nbsp;</label>
+                <select id="selectEstadoSolicitud" class="form-select" formControlName="idEstadoSolicitud">
+                    <option value=0>Seleccione...</option>
+                    <option *ngFor="let e of estadosSolicitud" [ngValue]="e.idEstado">{{ e.nombre }}</option>
+                </select>
+            </div>
+            <div class="col-sm-3 d-inline-flex align-items-center">
+                <label for="idTipoSolicitud" class="form-label m-0 ">Tipo&nbsp;</label>
+                <select id="selectTipoSolicitud" class="form-select" formControlName="idTipoSolicitud">
+                    <option value=0>Seleccione...</option>
+                    <option *ngFor="let t of tiposSolicitud" [ngValue]="t.idTipo">{{ t.nombre }}</option>
+                </select>
+            </div>
+            <div class="col-sm-6 d-inline-flex align-items-center">
+                <label for="razonSocial" class="form-label m-0 " style="white-space: nowrap;">Razón social&nbsp;</label>
+                <input type="text" class="form-control" id="razonSocial" formControlName="razonSocial"
+                    [class.is-invalid]="filtros.controls['razonSocial'].errors && filtros.controls['razonSocial'].touched"
+                    (keydown.enter)='updateList()'>
+                <!--<span class="invalid-feedback">
+                    <div *ngIf="filtros.controls['razonSocial'].hasError('required')">Debe ingresar una razón
+                        social.
+                    </div>
+                    <div *ngIf="filtros.controls['razonSocial'].hasError('maxlength')">El límite es de 64
+                        caracteres.
+                    </div>
+                </span>-->
+            </div>
+        </div>
+    </div>
+</form>
+<div class="table-responsive">
+    <table class="table table-bordered table-hover table-striped my-3">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Tipo de Solicitud</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Razon Social</th>
+                <th scope="col">Fecha de Solicitud</th>
+                <th scope="col">Fecha de Aprobación</th>
+                <th scope="col" colspan="3">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let req of list">
+                <td class="text-end">{{ req.idSolicitud }}</td>
+                <td>{{ req.tipoSolicitud }}</td>
+                <td>{{ req.estadoSolicitud }}</td>
+                <td>{{ req.razonSocial }}</td>
+                <td>{{ req.fechaSolicitud | date: 'medium' }}</td>
+                <td>{{ req.fechaAprobacion | date: 'medium' }}</td>
+                <td><button class="btn btn-primary bi bi-search"
+                        (click)="seeDetails(req.idSolicitud, req.tipoSolicitud!)"></button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="row my-3">
+    <button class="btn btn-primary" [disabled]="pageNumber === 1" (click)="previousPage()">
+        <i class="bi bi-arrow-left"></i> Página Anterior
+    </button>
+    <button class="btn btn-primary mx-2" [disabled]="list.length<10" (click)="nextPage()">
+        Página Siguiente <i class="bi bi-arrow-right"></i>
+    </button>
+</div>

@@ -1,0 +1,87 @@
+<div class="row align-items-center">
+    <h1 class="display-6 col-lg-12">Editar oferta</h1>
+</div>
+<div class="row">
+    <div class="col-xl-8">
+        <form [formGroup]="formg">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-7 mb-3">
+                        <label for="nombre" class="form-label required">Nombre de la oferta</label>
+                        <input type="text" class="form-control" id="nombre" formControlName="nombre"
+                            [class.is-invalid]="formg.controls['nombre'].errors && formg.controls['nombre'].touched">
+                        <span class="invalid-feedback">
+                            <div *ngIf="formg.controls['nombre'].hasError('required')">Debe ingresar un nombre.</div>
+                            <div *ngIf="formg.controls['nombre'].hasError('maxlength')">El límite es de 64 caracteres.
+                            </div>
+                        </span>
+                    </div>
+                    <div class="col-md-5 mb-3">
+                        <label for="precio" class="form-label required">Precio</label>
+                        <input type="number" class="form-control" id="precio" formControlName="precio"
+                            [class.is-invalid]="formg.controls['precio'].errors && formg.controls['precio'].touched">
+                        <div class="form-text">
+                            Si no se quiere especificar un precio, ingrese 0.
+                        </div>
+                        <span class="invalid-feedback">
+                            <div *ngIf="formg.controls['precio'].hasError('required')">Debe ingresar un precio.</div>
+                            <div *ngIf="formg.controls['precio'].hasError('min')">Ingrese un valor positivo.</div>
+                            <div *ngIf="formg.controls['precio'].hasError('max')">Ingrese un valor menor.</div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <label for="descripcion" class="form-label">Descripcion de la oferta</label>
+                    <textarea type="text" class="form-control" id="descripcion" formControlName="descripcion" rows="3"
+                        [class.is-invalid]="formg.controls['descripcion'].errors && formg.controls['descripcion'].touched"></textarea>
+                    <span class="invalid-feedback">
+                        <div *ngIf="formg.controls['descripcion'].hasError('required')">Ingrese una descripcion.</div>
+                        <div *ngIf="formg.controls['descripcion'].hasError('maxlength')">El límite es de 256 caracteres.
+                        </div>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="fechaInicio" class="form-label required">Fecha de inicio</label>
+                    <div class="input-group">
+                        <input type="date" class="form-control" id="fechaInicio" name="fechaInicio"
+                            formControlName="fechaInicio"
+                            [class.is-invalid]="formg.controls['fechaInicio'].errors && formg.controls['fechaInicio'].touched">
+                        <span class="invalid-feedback">
+                            <div *ngIf="formg.controls['fechaInicio'].hasError('required')">Ingrese una fecha de
+                                inicio.
+                            </div>
+                        </span>
+
+                    </div>
+                    <div class="form-text">
+                        Anterior: {{ offer.fechaInicio | date:("dd/MM/yyyy") }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="fechaFin" class="form-label required">Fecha de finalización</label>
+                    <div class="input-group">
+                        <input type="date" class="form-control" id="fechaFin" name="fechaFin" formControlName="fechaFin"
+                            [class.is-invalid]="formg.controls['fechaFin'].errors && formg.controls['fechaFin'].touched">
+                        <span class="invalid-feedback">
+                            <div *ngIf="formg.controls['fechaFin'].hasError('required')">Ingrese una fecha de
+                                inicio.
+                            </div>
+                        </span>
+
+                    </div>
+                    <div class="form-text">
+                        Anterior: {{ offer.fechaFin | date:("dd/MM/yyyy") }}
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="my-3">
+            <button type="submit" class="btn btn-primary" (click)="edit()">Guardar</button>&nbsp;
+            <button class="btn btn-danger" (click)="cancel()">Cancelar</button>
+        </div>
+    </div>
+</div>

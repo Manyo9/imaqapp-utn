@@ -1,0 +1,82 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-warning bi bi-pencil" data-bs-toggle="modal"
+    attr.data-bs-target="#modal{{modalId}}"></button>
+
+<!-- Modal -->
+<div class="modal modal-xl fade" [id]="'modal'+modalId" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content p-5">
+            <form [formGroup]="form">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-2 mb-3">
+                            <label for="cantidad" class="form-label required">Cantidad</label>
+                            <input type="number" min="1" class="form-control" id="cantidad" formControlName="cantidad"
+                                [class.is-invalid]="form.controls['cantidad'].errors && form.controls['cantidad'].touched">
+                            <span class="invalid-feedback">
+                                <div *ngIf="form.controls['cantidad'].hasError('required')">Debe ingresar una cantidad.
+                                </div>
+                                <div *ngIf="form.controls['cantidad'].hasError('min')">Ingrese un valor válido.</div>
+                                <div *ngIf="form.controls['cantidad'].hasError('max')">Ingrese un valor válido.</div>
+                            </span>
+                        </div>
+                        <div class="col-md-2 mb-3">
+                            <label for="plazoEntrega" class="form-label">Plazo entrega</label>
+                            <input type="number" min="1" class="form-control" placeholder="días" id="plazoEntrega"
+                                formControlName="plazoEntrega"
+                                [class.is-invalid]="form.controls['plazoEntrega'].errors && form.controls['plazoEntrega'].touched">
+                            <span class="invalid-feedback">
+                                <div *ngIf="form.controls['plazoEntrega'].hasError('required')">Ingrese un plazo de
+                                    entrega.</div>
+                                <div *ngIf="form.controls['plazoEntrega'].hasError('min')">Ingrese un valor válido.
+                                </div>
+                                <div *ngIf="form.controls['plazoEntrega'].hasError('max')">Ingrese un valor válido.
+                                </div>
+                            </span>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="precioUnitario" class="form-label required">Precio Unitario</label>
+                            <input type="number" class="form-control" id="precioUnitario"
+                                formControlName="precioUnitario"
+                                [class.is-invalid]="form.controls['precioUnitario'].errors && form.controls['precioUnitario'].touched">
+                            <span class="invalid-feedback">
+                                <div *ngIf="form.controls['precioUnitario'].hasError('required')">Ingrese un precio
+                                    unitario.</div>
+                                <div *ngIf="form.controls['precioUnitario'].hasError('min')">Ingrese un valor válido.
+                                </div>
+                                <div *ngIf="form.controls['precioUnitario'].hasError('max')">Ingrese un valor válido.
+                                </div>
+                            </span>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="precioTotal" class="form-label required">Precio Total</label>
+                            <input type="number" class="form-control" id="plazoEntrega"
+                                [value]="form.get('cantidad')!.value * form.get('precioUnitario')!.value" readonly>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <label for="descripcion" class="form-label required">Descripción</label>
+                            <textarea type="text" class="form-control" id="descripcion" formControlName="descripcion"
+                                rows="3"
+                                [class.is-invalid]="form.controls['descripcion'].errors && form.controls['descripcion'].touched"></textarea>
+                            <span class="invalid-feedback">
+                                <div *ngIf="form.controls['descripcion'].hasError('required')">Ingrese un comentario.
+                                </div>
+                                <div *ngIf="form.controls['descripcion'].hasError('maxlength')">El límite es de 512
+                                    caracteres.
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="modal-footer m-3">
+                <button class="btn btn-success" [disabled]="!form.valid" (click)="editDetail()"
+                    data-bs-dismiss="modal">Agregar</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

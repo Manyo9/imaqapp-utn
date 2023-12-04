@@ -1,0 +1,28 @@
+input, textarea, select {
+    border-color: gray;
+    border-width: 1px;
+}
+
+button {
+    height: fit-content;
+    width: fit-content;
+}
+.parts-list {
+    height: 12rem;
+    overflow-y: scroll;
+}
+@media (min-width: 768px) {
+    .parts-list {
+        height: 38rem;
+        overflow-y: scroll;
+    }
+    .small-screen {
+        display: none !important;
+    }
+  }
+  @media (max-width: 767px) {
+    .big-screen {
+        display: none !important;
+    }
+  }
+

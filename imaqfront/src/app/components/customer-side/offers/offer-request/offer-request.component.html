@@ -1,0 +1,97 @@
+<h1 class="display-6">Solicitud de compra</h1>
+<div class="mb-3">
+    <p>
+        <strong>Estás por solicitar: </strong>{{ offer.nombre }}. <br>
+        <strong>Valor:</strong> {{ offer.precio | currency: 'ARS' }} <br>
+        <strong>Termina el día: </strong>{{ offer.fechaFin | date: 'mediumDate' }}
+    </p>
+</div>
+<div class="row">
+    <div class="col-12">
+        <form [formGroup]="formreq">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="nombreSolicitante" class="form-label required">Nombre del solicitante</label>
+                        <input type="text" class="form-control" id="nombreSolicitante"
+                            formControlName="nombreSolicitante"
+                            [class.is-invalid]="formreq.controls['nombreSolicitante'].errors && formreq.controls['nombreSolicitante'].touched">
+                        <span class="invalid-feedback">
+                            <div *ngIf="formreq.controls['nombreSolicitante'].hasError('required')">Debe ingresar un
+                                nombre.
+                            </div>
+                            <div *ngIf="formreq.controls['nombreSolicitante'].hasError('maxlength')">El límite es de 64
+                                caracteres.</div>
+                        </span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="razonSocial" class="form-label required">Razón social</label>
+                        <input type="text" class="form-control" id="razonSocial" formControlName="razonSocial"
+                            [class.is-invalid]="formreq.controls['razonSocial'].errors && formreq.controls['razonSocial'].touched">
+                        <span class="invalid-feedback">
+                            <div *ngIf="formreq.controls['razonSocial'].hasError('required')">Debe ingresar una razón
+                                social.
+                            </div>
+                            <div *ngIf="formreq.controls['razonSocial'].hasError('maxlength')">El límite es de 64
+                                caracteres.
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label for="telefonoContacto" class="form-label required">Telefono</label>
+                    <input type="tel" class="form-control" id="telefonoContacto" formControlName="telefonoContacto"
+                        [class.is-invalid]="formreq.controls['telefonoContacto'].errors && formreq.controls['telefonoContacto'].touched">
+                    <span class="invalid-feedback">
+                        <div *ngIf="formreq.controls['telefonoContacto'].hasError('required')">Debe ingresar un teléfono
+                            de
+                            contacto.</div>
+                        <div *ngIf="formreq.controls['telefonoContacto'].hasError('maxlength')">El límite es de 15
+                            caracteres
+                        </div>
+                    </span>
+                </div>
+                <div class="col-md-8 mb-3">
+                    <label for="emailContacto" class="form-label required">E-mail de contacto</label>
+                    <input type="email" class="form-control" id="emailContacto" formControlName="emailContacto"
+                        [class.is-invalid]="formreq.controls['emailContacto'].errors && formreq.controls['emailContacto'].touched">
+                    <span class="invalid-feedback">
+                        <div *ngIf="formreq.controls['emailContacto'].hasError('required')">Debe ingresar un e-mail de
+                            contacto.
+                        </div>
+                        <div *ngIf="formreq.controls['emailContacto'].hasError('maxlength')">El e-mail no debe tener más
+                            de 64 caracteres.</div>
+                        <div *ngIf="formreq.controls['emailContacto'].hasError('email')">Debe ingresar un email válido.
+                        </div>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <label for="comentario" class="form-label">Comentarios</label>
+                    <textarea type="text" class="form-control" id="comentario" formControlName="comentario" rows="3"
+                        [class.is-invalid]="formreq.controls['comentario'].errors && formreq.controls['comentario'].touched"></textarea>
+                    <span class="invalid-feedback">
+                        <div *ngIf="formreq.controls['comentario'].hasError('required')">Ingrese un comentario.</div>
+                        <div *ngIf="formreq.controls['comentario'].hasError('maxlength')">El límite es de 512
+                            caracteres.
+                        </div>
+                    </span>
+                    <div class="form-text">
+                        Ingrese aquí cualquier comentario que crea necesario.
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="mb-3">
+    <p>En brevedad estaremos en contacto a través de teléfono o e-mail.</p>
+</div>
+<div class="py-3">
+    <button type="submit" class="btn btn-primary boton" (click)="save()"
+        [disabled]="!formreq.valid">Guardar</button>&nbsp;
+    <button class="btn btn-danger boton" (click)="cancel()">Cancelar</button>
+</div>

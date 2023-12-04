@@ -1,0 +1,32 @@
+<h1 class="display-6">Reporte de clientes</h1>
+<div class="row">
+    <div class="col-12">
+        <form [formGroup]="formg" class="row row-cols-lg-auto g-3 align-items-center">
+            <div class="col-12">
+                <label for="fechaInicio" class="form-label">Fecha Inicio</label>
+            </div>
+            <div class="col-12">
+                <input type="date" class="form-control" id="fechaInicio" formControlName="fechaInicio"
+                    [class.is-invalid]="formg.controls['fechaInicio'].errors && formg.controls['fechaInicio'].touched">
+            </div>
+            <div class="col-12">
+                <label for="fechaFin" class="form-label">Fecha Fin</label>
+            </div>
+            <div class="col-12">
+                <input type="date" class="form-control" id="fechaFin" formControlName="fechaFin"
+                    [class.is-invalid]="formg.controls['fechaFin'].errors && formg.controls['fechaFin'].touched">
+            </div>
+            <div class="col-12">
+                <button class="btn btn-primary" (click)="generateReport()">Buscar</button>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-12">
+                <div class="my-3 border border-2" *ngIf="reporteClientes">
+                    <app-bar-chart [dataEntries]="dataEntry"
+                        label="Cantidad de solicitudes por cliente"></app-bar-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

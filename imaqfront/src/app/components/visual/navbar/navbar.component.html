@@ -1,0 +1,88 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#" routerLink="inicio">Inicio</a>
+    <ul class="navbar-nav ms-auto d-flex flex-row justify-content-center align-items-center small-screen-buttons">
+      <ng-container *ngIf="!role || role === 'NOTLOGGED'">
+        <div class="nav-item">
+          <button class="btn btn-outline-light border border-secondary me-3" routerLink="login" type="button">Iniciar
+            Sesión</button>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="role && role !== 'NOTLOGGED'">
+        <a class="nav-link me-3 disabled text-light welcome-message">Bienvenido! Loggeado como {{role}}</a>
+        <button class="btn btn-outline-light border border-secondary me-3" routerLink="perfil" type="button">Mi
+          perfil</button>
+      </ng-container>
+    </ul>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#" routerLinkActive="active" routerLink="servicios">Servicios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" routerLinkActive="active" routerLink="repuestos">Repuestos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" routerLinkActive="active" routerLink="alquileres">Alquileres</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" routerLinkActive="active" routerLink="ofertas">Ofertas</a>
+        </li>
+        <ng-container *ngIf="role === 'MANAGER' || role === 'ADMIN'">
+          <li class=" nav-item">
+            <a class="nav-link" href="#" routerLinkActive="active" routerLink="solicitudes">Solicitudes</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+              data-bs-display="static" aria-expanded="false">
+              Gestión de recursos
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item d-flex justify-content-start" routerLinkActive="active" href="#"
+                  routerLink="gestion/ofertas">Gestionar
+                  ofertas</a></li>
+              <li><a class="dropdown-item d-flex justify-content-start" routerLinkActive="active" href="#"
+                  routerLink="gestion/proveedores">Gestionar
+                  proveedores</a></li>
+              <li><a class="dropdown-item d-flex justify-content-start" routerLinkActive="active" href="#"
+                  routerLink="gestion/productos">Gestionar
+                  productos</a></li>
+              <li><a class="dropdown-item d-flex justify-content-start" routerLinkActive="active" href="#"
+                  routerLink="gestion/maquinas">Gestionar
+                  maquinas alquilables</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" routerLinkActive="active" routerLink="estadisticas">Estadisticas</a>
+          </li>
+        </ng-container>
+        <ng-container *ngIf="role === 'ADMIN'">
+          <li class="nav-item">
+            <a class="nav-link" href="#" routerLinkActive="active" routerLink="admin/usuarios">Usuarios</a>
+          </li>
+        </ng-container>
+      </ul>
+      <ul class="navbar-nav ms-auto large-screen-buttons">
+        <ng-container *ngIf="!role || role === 'NOTLOGGED'">
+          <div class="nav-item">
+            <button class="btn btn-outline-light border border-secondary" routerLink="login" type="button">Iniciar
+              Sesión</button>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="role && role !== 'NOTLOGGED'">
+          <li class="nav-item">
+            <a class="nav-link disabled text-light">Bienvenido! Loggeado como {{role}}</a>
+          </li>
+          <div class="nav-item mx-3">
+            <button class="btn btn-outline-light border border-secondary " routerLink="perfil" type="button">Mi
+              perfil</button>
+          </div>
+        </ng-container>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,56 @@
+<h1 class="display-6 text-center">Oferta N°{{offer.idOferta}}</h1>
+<div class="mb-3 table-responsive">
+    <table class="table table-striped table-bordered table-hover">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ offer.idOferta }}</td>
+                <th>Vendida?</th>
+                <td>{{ offer.vendida ? 'SI' : 'NO' }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ offer.nombre }}</td>
+                <th>Precio</th>
+                <td class="text-end">{{ offer.precio | currency: 'ARS' }}</td>
+            </tr>
+            <tr>
+                <th>Descripción</th>
+                <td colspan="3" class="width-600"><span>{{ offer.descripcion }}</span></td>
+            </tr>
+            <tr>
+                <th>Fecha de inicio</th>
+                <td>{{ offer.fechaInicio | date: 'mediumDate' }}</td>
+                <th>Fecha de finalización</th>
+                <td>{{ offer.fechaFin | date: 'mediumDate' }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="mb-3 table-responsive">
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th scope="col">ID Producto</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Codigo Parte</th>
+                <th scope="col">Tipo de Producto</th>
+                <th scope="col" colspan="3">Descripcion</th>
+                <th scope="col">Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let d of details">
+                <td class="text-end">{{ d.idProducto }}</td>
+                <td>{{ d.nombreProducto }}</td>
+                <td>{{ d.codigoProducto }} </td>
+                <td>{{ d.tipoProducto }}</td>
+                <td colspan="3" class="width-400"><span>{{ d.descripcionProducto}}</span></td>
+                <td class="text-end">{{ d.precioUnitario | currency: 'ARS' }} </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="justify-content-between">
+    <button type="submit" class="btn btn-warning" (click)="return()">Volver</button>
+</div>

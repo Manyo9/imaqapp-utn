@@ -1,0 +1,37 @@
+<div class="row align-items-center">
+    <div class="col-md-12 d-flex">
+        <h1 class="display-6 me-auto">Listado de Maquinas</h1>
+        <button class="btn btn-primary" (click)="updateList()">Refrescar</button>&nbsp;
+        <button class="btn btn-success" (click)="newRentable()">+ Nueva Maquina</button>
+    </div>
+</div>
+<div class="table-responsive">
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Marca</th>
+                <th scope="col">Modelo</th>
+                <th scope="col">Altura</th>
+                <th scope="col">Capacidad</th>
+                <th scope="col" colspan="3">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let maq of list">
+                <td class="text-end">{{ maq.idMaquinaAlq }}</td>
+                <td>{{ maq.tipoMaquina }}</td>
+                <td>{{ maq.marcaMaquina }}</td>
+                <td>{{ maq.modeloMaquina }}</td>
+                <td class="text-end">{{ maq.alturaTorre }}&nbsp;m</td>
+                <td class="text-end">{{ maq.capacidadCarga }}&nbsp;kg</td>
+                <td class="text-center"><button class="btn btn-warning"
+                        (click)="editRentable(maq.idMaquinaAlq)">Editar</button></td>
+                <td class="text-center "><app-delete-rentable [id]="maq.idMaquinaAlq "
+                        (onDeleted)="updateList()"></app-delete-rentable></td>
+                <!-- [isDisabled]="!maq.activo" -->
+            </tr>
+        </tbody>
+    </table>
+</div>

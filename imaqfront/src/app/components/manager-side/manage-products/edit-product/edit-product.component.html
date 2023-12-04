@@ -1,0 +1,72 @@
+<div class="row align-items-center">
+    <h1 class="display-6 col-lg-12">Editar producto</h1>
+</div>
+<form [formGroup]="formg">
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="nombre" class="form-label required">Nombre del producto</label>
+                <input type="text" class="form-control" id="nombre" formControlName="nombre"
+                    [class.is-invalid]="formg.controls['nombre'].errors && formg.controls['nombre'].touched">
+                <span class="invalid-feedback">
+                    <div *ngIf="formg.controls['nombre'].hasError('required')">Debe ingresar un nombre.</div>
+                    <div *ngIf="formg.controls['nombre'].hasError('maxlength')">El nombre no debe tener
+                        más de 64 caracteres.</div>
+                </span>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-3">
+                <label for="idTipoProducto" class="form-label required">Tipo de producto</label>
+                <select id="selectTipoProducto" class="form-select" formControlName="idTipoProducto">
+                    <option *ngFor="let tipo of tiposProducto" [ngValue]="tipo.idTipo">{{ tipo.nombre }}</option>
+                </select>
+                <span class="invalid-feedback">
+                    <div *ngIf="formg.controls['idTipoProducto'].hasError('required')">Debe seleccionar un tipo.</div>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-6 mb-3">
+            <label for="precio" class="form-label required">Precio</label>
+            <input type="number" class="form-control" id="precio" formControlName="precio"
+                [class.is-invalid]="formg.controls['precio'].errors && formg.controls['precio'].touched">
+            <span class="invalid-feedback">
+                <div *ngIf="formg.controls['precio'].hasError('required')">Debe ingresar un precio.</div>
+                <div *ngIf="formg.controls['precio'].hasError('min')">Ingrese un valor positivo.</div>
+                <div *ngIf="formg.controls['precio'].hasError('max')">El valor máximo es de $ 999999999.99</div>
+            </span>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="codigoParte" class="form-label">Código de parte</label>
+            <input type="text" class="form-control" id="codigoParte" formControlName="codigoParte"
+                [class.is-invalid]="formg.controls['codigoParte'].errors && formg.controls['codigoParte'].touched">
+            <span class="invalid-feedback">
+                <div *ngIf="formg.controls['codigoParte'].hasError('required')">Debe ingresar un código.</div>
+                <div *ngIf="formg.controls['codigoParte'].hasError('maxlength')">El código no puede tener más de 20
+                    caracteres</div>
+            </span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-10 mb-3">
+            <label for="descripcion" class="form-label">Descripcion</label>
+            <textarea type="text" class="form-control" id="descripcion" formControlName="descripcion" rows="3"
+                [class.is-invalid]="formg.controls['descripcion'].errors && formg.controls['descripcion'].touched"></textarea>
+            <span class="invalid-feedback">
+                <div *ngIf="formg.controls['descripcion'].hasError('required')">Debe ingresar una descripcion.</div>
+                <div *ngIf="formg.controls['descripcion'].hasError('maxlength')">La descripción no debe tener
+                    más de 264 caracteres.</div>
+            </span>
+        </div>
+    </div>
+    <div class="">
+        <div class="mb-3 col-md-12 form-check">
+            <label for="activo" class="form-check-label">Activo</label>
+            <input type="checkbox" class="form-check-input" id="activo" formControlName="activo">
+        </div>
+    </div>
+    <div class="">
+        <button type="submit" class="btn btn-primary" (click)="edit()">Guardar</button>&nbsp;
+        <button class="btn btn-danger" (click)="cancel()">Cancelar</button>
+    </div>
+</form>

@@ -1,0 +1,16 @@
+@media (max-width: 550px) {
+    .welcome-message {
+        display: none !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .small-screen-buttons {
+        display: none !important;
+    }
+}
+@media (max-width: 992px) {
+    .large-screen-buttons {
+        display: none !important;
+    }
+}

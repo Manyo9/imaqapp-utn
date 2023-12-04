@@ -1,0 +1,205 @@
+<div class="row align-items-center">
+    <h1 class="display-6 col-lg-12">Nueva solicitud de repuestos</h1>
+</div>
+<div class="row">
+    <div class="col-md-8">
+        <form [formGroup]="formreq">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="nombreSolicitante" class="form-label required">Nombre del solicitante</label>
+                        <input type="text" class="form-control" id="nombreSolicitante"
+                            formControlName="nombreSolicitante"
+                            [class.is-invalid]="formreq.controls['nombreSolicitante'].errors && formreq.controls['nombreSolicitante'].touched">
+                        <span class="invalid-feedback">
+                            <div *ngIf="formreq.controls['nombreSolicitante'].hasError('required')">Debe ingresar un
+                                nombre.
+                            </div>
+                            <div *ngIf="formreq.controls['nombreSolicitante'].hasError('maxlength')">El límite es de 64
+                                caracteres.</div>
+                        </span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="razonSocial" class="form-label required">Razón social</label>
+                        <input type="text" class="form-control" id="razonSocial" formControlName="razonSocial"
+                            [class.is-invalid]="formreq.controls['razonSocial'].errors && formreq.controls['razonSocial'].touched">
+                        <span class="invalid-feedback">
+                            <div *ngIf="formreq.controls['razonSocial'].hasError('required')">Debe ingresar una razón
+                                social.
+                            </div>
+                            <div *ngIf="formreq.controls['razonSocial'].hasError('maxlength')">El límite es de 64
+                                caracteres.
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label for="telefonoContacto" class="form-label required">Telefono</label>
+                    <input type="tel" class="form-control" id="telefonoContacto" formControlName="telefonoContacto"
+                        [class.is-invalid]="formreq.controls['telefonoContacto'].errors && formreq.controls['telefonoContacto'].touched">
+                    <span class="invalid-feedback">
+                        <div *ngIf="formreq.controls['telefonoContacto'].hasError('required')">Debe ingresar un teléfono
+                            de
+                            contacto.</div>
+                        <div *ngIf="formreq.controls['telefonoContacto'].hasError('maxlength')">El límite es de 15
+                            caracteres
+                        </div>
+                    </span>
+                </div>
+                <div class="col-md-8 mb-3">
+                    <label for="emailContacto" class="form-label required">E-mail de contacto</label>
+                    <input type="email" class="form-control" id="emailContacto" formControlName="emailContacto"
+                        [class.is-invalid]="formreq.controls['emailContacto'].errors && formreq.controls['emailContacto'].touched">
+                    <span class="invalid-feedback">
+                        <div *ngIf="formreq.controls['emailContacto'].hasError('required')">Debe ingresar un e-mail de
+                            contacto.
+                        </div>
+                        <div *ngIf="formreq.controls['emailContacto'].hasError('maxlength')">El e-mail no debe tener más
+                            de 64 caracteres.</div>
+                        <div *ngIf="formreq.controls['emailContacto'].hasError('email')">Debe ingresar un email válido.
+                        </div>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <label for="comentario" class="form-label">Comentarios</label>
+                    <textarea type="text" class="form-control" id="comentario" formControlName="comentario" rows="3"
+                        [class.is-invalid]="formreq.controls['comentario'].errors && formreq.controls['comentario'].touched"></textarea>
+                    <span class="invalid-feedback">
+                        <div *ngIf="formreq.controls['comentario'].hasError('required')">Ingrese un comentario.</div>
+                        <div *ngIf="formreq.controls['comentario'].hasError('maxlength')">El límite es de 512
+                            caracteres.
+                        </div>
+                    </span>
+                    <div class="form-text">
+                        Ingrese aquí cualquier comentario que crea necesario.
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="border border-bottom border-dark-subtle mb-2"></div>
+        <form [formGroup]="formpart">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="marca" class="form-label required">Marca</label>
+                        <input type="text" class="form-control" id="marca" formControlName="marca"
+                            [class.is-invalid]="formpart.controls['marca'].errors && formpart.controls['marca'].touched">
+                        <span class="invalid-feedback">
+                            <div *ngIf="formpart.controls['marca'].hasError('required')">Debe ingresar una marca.
+                            </div>
+                            <div *ngIf="formpart.controls['marca'].hasError('maxlength')">La marca no debe tener
+                                más de 32 caracteres.</div>
+                        </span>
+                    </div>
+                    <div class="col-md-8 mb-3">
+                        <label for="modelo" class="form-label required">Modelo</label>
+                        <input type="text" class="form-control" id="modelo" formControlName="modelo"
+                            [class.is-invalid]="formpart.controls['modelo'].errors && formpart.controls['modelo'].touched">
+                        <span class="invalid-feedback">
+                            <div *ngIf="formpart.controls['modelo'].hasError('required')">Debe ingresar un
+                                modelo.</div>
+                            <div *ngIf="formpart.controls['modelo'].hasError('maxlength')">El modelo no debe
+                                tener más de 64 caracteres.</div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5 mb-3">
+                    <label for="serie" class="form-label required">Serie</label>
+                    <input type="text" class="form-control" id="serie" formControlName="serie"
+                        [class.is-invalid]="formpart.controls['serie'].errors && formpart.controls['serie'].touched">
+                    <span class="invalid-feedback">
+                        <div *ngIf="formpart.controls['serie'].hasError('required')">Debe ingresar una serie.</div>
+                        <div *ngIf="formpart.controls['serie'].hasError('maxlength')">La serie no debe tener más
+                            de 20 caracteres.</div>
+                    </span>
+                </div>
+                <div class="col-md-5 mb-3">
+                    <label for="codigoRepuesto" class="form-label">Código</label>
+                    <input type="text" class="form-control" id="codigoRepuesto" formControlName="codigoRepuesto"
+                        [class.is-invalid]="formpart.controls['codigoRepuesto'].errors && formpart.controls['codigoRepuesto'].touched">
+                    <span class="invalid-feedback">
+                        <div *ngIf="formpart.controls['codigoRepuesto'].hasError('required')">Debe ingresar un código.
+                        </div>
+                        <div *ngIf="formpart.controls['codigoRepuesto'].hasError('maxlength')">El código no debe tener
+                            más de 20 caracteres.</div>
+                    </span>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <label for="cantidad" class="form-label required">Cant.</label>
+                    <input type="number" min="1" class="form-control" id="cantidad" formControlName="cantidad"
+                        [class.is-invalid]="formpart.controls['cantidad'].errors && formpart.controls['cantidad'].touched">
+                    <span class="invalid-feedback">
+                        <div *ngIf="formpart.controls['cantidad'].hasError('required')">Debe ingresar una
+                            cantidad.</div>
+                        <div *ngIf="formpart.controls['cantidad'].hasError('min')">Ingrese una cantidad válida.
+                        </div>
+                        <div *ngIf="formpart.controls['cantidad'].hasError('max')">Ingrese una cantidad válida.
+                        </div>
+                    </span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-lg-8 col-md-6 col-12">
+                    <label for="descripcionRepuesto" class="form-label required">Descripción del repuesto</label>
+                    <input type="text" class="form-control" id="descripcionRepuesto"
+                        formControlName="descripcionRepuesto"
+                        [class.is-invalid]="formpart.controls['descripcionRepuesto'].errors && formpart.controls['descripcionRepuesto'].touched">
+                    <span class="invalid-feedback">
+                        <div *ngIf="formpart.controls['descripcionRepuesto'].hasError('required')">Debe ingresar una
+                            descripción.
+                        </div>
+                        <div *ngIf="formpart.controls['descripcionRepuesto'].hasError('maxlength')">La descripción no
+                            debe tener más de 64 caracteres.</div>
+                    </span>
+
+                </div>
+                <div class="col-lg-4 col-6 d-flex align-items-end big-screen">
+                    <button class="btn btn-success" [disabled]="!formpart.valid"
+                        (click)="addPart()">Agregar</button>&nbsp;
+                    <button class="btn btn-secondary" (click)="cleanPartForm()">Limpiar</button>
+                </div>
+                <div class="form-text">
+                    Ingrese qué repuesto es. Un perno, una bomba de freno, un filtro...
+                </div>
+
+            </div>
+            <div class="col-12 d-flex align-items-end mb-3 small-screen">
+                <button class="btn btn-success me-1" [disabled]="!formpart.valid"
+                    (click)="addPart()">Agregar</button>&nbsp;
+                <button class="btn btn-secondary" (click)="cleanPartForm()">Limpiar</button>
+            </div>
+
+        </form>
+        <div class="mb-3">
+            <button class="btn btn-primary" (click)="save()"
+                [disabled]="!formreq.valid || parts.length == 0">Guardar</button>&nbsp;
+            <button class="btn btn-danger" (click)="cancel()">Cancelar solicitud</button>
+        </div>
+    </div>
+    <div class="col-md-4">
+
+        <h5>Partes agregadas</h5>
+        <div class="list-group parts-list border">
+
+            <div class="list-group-item d-flex justify-content-between align-items-center " *ngFor="let p of parts">
+                <span class="badge bg-primary rounded-pill me-4">x{{ p.cantidad }}</span>
+                <div>
+
+                    <p class="mb-0">
+                        {{ p.marca }} - {{ p.modelo }} - {{ p.serie }} {{
+                        p.codigoRepuesto || ''}}
+                    </p>
+                </div>
+                <button class="btn btn-outline-danger bi bi-trash" (click)="removePart(p)"></button>
+            </div>
+
+        </div>
+
+    </div>
+</div>

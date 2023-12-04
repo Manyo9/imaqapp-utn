@@ -1,0 +1,184 @@
+<div class="row align-items-center">
+    <h1 class="display-6 col-lg-12">Nuevo alquiler</h1>
+</div>
+<div class="row">
+    <div class="col-md-8">
+        <form [formGroup]="formreq">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="nombreSolicitante" class="form-label required">Nombre del solicitante</label>
+                        <input type="text" class="form-control" id="nombreSolicitante"
+                            formControlName="nombreSolicitante"
+                            [class.is-invalid]="formreq.controls['nombreSolicitante'].errors && formreq.controls['nombreSolicitante'].touched">
+                        <span class="invalid-feedback">
+                            <div *ngIf="formreq.controls['nombreSolicitante'].hasError('required')">Debe ingresar un
+                                nombre.
+                            </div>
+                            <div *ngIf="formreq.controls['nombreSolicitante'].hasError('maxlength')">El límite es de 64
+                                caracteres.</div>
+                        </span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="razonSocial" class="form-label required">Razón social</label>
+                        <input type="text" class="form-control" id="razonSocial" formControlName="razonSocial"
+                            [class.is-invalid]="formreq.controls['razonSocial'].errors && formreq.controls['razonSocial'].touched">
+                        <span class="invalid-feedback">
+                            <div *ngIf="formreq.controls['razonSocial'].hasError('required')">Debe ingresar una razón
+                                social.
+                            </div>
+                            <div *ngIf="formreq.controls['razonSocial'].hasError('maxlength')">El límite es de 64
+                                caracteres.
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label for="telefonoContacto" class="form-label required">Telefono</label>
+                    <input type="tel" class="form-control" id="telefonoContacto" formControlName="telefonoContacto"
+                        [class.is-invalid]="formreq.controls['telefonoContacto'].errors && formreq.controls['telefonoContacto'].touched">
+                    <span class="invalid-feedback">
+                        <div *ngIf="formreq.controls['telefonoContacto'].hasError('required')">Debe ingresar un teléfono
+                            de
+                            contacto.</div>
+                        <div *ngIf="formreq.controls['telefonoContacto'].hasError('maxlength')">El límite es de 15
+                            caracteres
+                        </div>
+                    </span>
+                </div>
+                <div class="col-md-8 mb-3">
+                    <label for="emailContacto" class="form-label required">E-mail de contacto</label>
+                    <input type="email" class="form-control" id="emailContacto" formControlName="emailContacto"
+                        [class.is-invalid]="formreq.controls['emailContacto'].errors && formreq.controls['emailContacto'].touched">
+                    <span class="invalid-feedback">
+                        <div *ngIf="formreq.controls['emailContacto'].hasError('required')">Debe ingresar un e-mail de
+                            contacto.
+                        </div>
+                        <div *ngIf="formreq.controls['emailContacto'].hasError('maxlength')">El e-mail no debe tener más
+                            de 64 caracteres.</div>
+                        <div *ngIf="formreq.controls['emailContacto'].hasError('email')">Debe ingresar un email válido.
+                        </div>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <label for="comentario" class="form-label">Comentarios</label>
+                    <textarea type="text" class="form-control" id="comentario" formControlName="comentario" rows="3"
+                        [class.is-invalid]="formreq.controls['comentario'].errors && formreq.controls['comentario'].touched"></textarea>
+                    <span class="invalid-feedback">
+                        <div *ngIf="formreq.controls['comentario'].hasError('required')">Ingrese un comentario.</div>
+                        <div *ngIf="formreq.controls['comentario'].hasError('maxlength')">El límite es de 512
+                            caracteres.
+                        </div>
+                    </span>
+                    <div class="form-text">
+                        Ingrese aquí cualquier especificación sobre el alquiler. Si necesita una máquina que no se
+                        encuentra listada
+                        a la derecha, inclúyala aquí, escribiendo su especificación.
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form [formGroup]="formrent">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 mb-3">
+                        <label for="fechaInicio" class="form-label required">Fecha de inicio</label>
+                        <div class="input-group">
+                            <input type="date" class="form-control" id="fechaInicio" placeholder="AAAA-mm-dd"
+                                name="fechaInicio" formControlName="fechaInicio" [readOnly]="isDisabledButton"
+                                [class.is-invalid]="formrent.controls['fechaInicio'].errors && formrent.controls['fechaInicio'].touched">
+                            <span class="invalid-feedback">
+                                <div *ngIf="formrent.controls['fechaInicio'].hasError('required')">Ingrese una fecha de
+                                    inicio.
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-3">
+                        <label for="fechaFin" class="form-label required">Fecha de finalización</label>
+                        <div class="input-group">
+                            <input type="date" class="form-control" id="fechaFin" placeholder="AAAA-mm-dd"
+                                name="fechaFin" formControlName="fechaFin" [readOnly]="isDisabledButton"
+                                [class.is-invalid]="formrent.controls['fechaFin'].errors && formrent.controls['fechaFin'].touched">
+                            <span class="invalid-feedback">
+                                <div *ngIf="formrent.controls['fechaFin'].hasError('required')">Ingrese una fecha de
+                                    finalización.
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-12 d-flex align-items-end mb-3">
+                        <button class="btn btn-warning bi bi-search boton me-2" (click)="loadMachines()"
+                            [disabled]="isDisabledButton" type="button"> Buscar</button>
+                        <button class="btn btn-primary boton " (click)="enableButton()" [disabled]="!isDisabledButton"
+                            type="button">Editar fechas</button>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+        <div class="small-screen">
+            <h5>Maquinas disponibles</h5>
+            <div class="list-group machines-list border">
+
+                <div class="list-group-item d-flex justify-content-between align-items-center "
+                    *ngFor="let m of machines">
+                    <div>
+                        <p class="mb-1"><strong> {{ m.tipoMaquina }}.</strong><br> Carga: {{ m.capacidadCarga }} kg.
+                            <br> Altura: {{
+                            m.alturaTorre
+                            }} m.
+                        </p>
+                    </div>
+                    <button class="boton btn btn-outline-success bi bi-plus" (click)="addMachine(m)"></button>
+                </div>
+
+            </div>
+        </div>
+        <h5 class="my-3">Maquinas seleccionadas</h5>
+        <div class="list-group selected-machines-list border">
+
+            <div class="list-group-item d-flex justify-content-between align-items-center "
+                *ngFor="let m of selectedMachines">
+                <div class="">
+                    <p class="mb-1"><strong> {{ m.tipoMaquina }}.</strong><br> Carga: {{ m.capacidadCarga }} kg.
+                        <br> Altura: {{
+                        m.alturaTorre
+                        }} m.
+                    </p>
+                </div>
+                <button class="boton btn btn-outline-danger bi bi-trash" (click)="removeMachine(m)"></button>
+            </div>
+
+        </div>
+    </div>
+    <!-- columna del costado lista de maquinas -->
+    <div class="col-md-4 big-screen">
+        <h5>Maquinas disponibles</h5>
+        <div class="list-group machines-list border">
+
+            <div class="list-group-item d-flex justify-content-between align-items-center " *ngFor="let m of machines">
+                <div>
+                    <p class="mb-1"><strong> {{ m.tipoMaquina }}.</strong><br> Carga: {{ m.capacidadCarga }} kg.
+                        <br> Altura: {{
+                        m.alturaTorre
+                        }} m.
+                    </p>
+                </div>
+                <button class="boton btn btn-outline-success bi bi-plus" (click)="addMachine(m)"></button>
+            </div>
+
+        </div>
+
+    </div>
+    <div class=" py-3">
+        <button type="submit" class="btn btn-primary boton" (click)="save()"
+            [disabled]="!formreq.valid || !formrent.valid">Guardar</button>&nbsp;
+        <button class="btn btn-danger boton" (click)="cancel()">Cancelar</button>
+    </div>
+</div>
+<br>

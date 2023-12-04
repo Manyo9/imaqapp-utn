@@ -1,0 +1,76 @@
+<div class="row align-items-center">
+    <h1 class="display-6 col-lg-12">Editar máquina alquilable</h1>
+</div>
+<form [formGroup]="formg">
+    <div class="form-group">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-3">
+                <label for="marcaMaquina" class="form-label required">Marca</label>
+                <input type="text" class="form-control" id="marcaMaquina" formControlName="marcaMaquina"
+                    [class.is-invalid]="formg.controls['marcaMaquina'].errors && formg.controls['marcaMaquina'].touched">
+                <span class="invalid-feedback">
+                    <div *ngIf="formg.controls['marcaMaquina'].hasError('required')">Debe ingresar una marca.</div>
+                    <div *ngIf="formg.controls['marcaMaquina'].hasError('maxlength')">La marca no debe tener más de 32
+                        caracteres.</div>
+                </span>
+            </div>
+            <div class="col-lg-6 col-md-6 mb-3">
+                <label for="modeloMaquina" class="form-label required">Modelo</label>
+                <input type="text" class="form-control" id="modeloMaquina" formControlName="modeloMaquina"
+                    [class.is-invalid]="formg.controls['modeloMaquina'].errors && formg.controls['modeloMaquina'].touched">
+                <span class="invalid-feedback">
+                    <div *ngIf="formg.controls['modeloMaquina'].hasError('required')">Debe ingresar un modelo.</div>
+                    <div *ngIf="formg.controls['modeloMaquina'].hasError('maxlength')">El modelo no debe tener más de 64
+                        caracteres.</div>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 mb-3">
+            <label for="serieMaquina" class="form-label required">Serie</label>
+            <input type="text" class="form-control" id="serieMaquina" formControlName="serieMaquina"
+                [class.is-invalid]="formg.controls['serieMaquina'].errors && formg.controls['serieMaquina'].touched">
+            <span class="invalid-feedback">
+                <div *ngIf="formg.controls['serieMaquina'].hasError('required')">Debe ingresar un modelo.</div>
+                <div *ngIf="formg.controls['serieMaquina'].hasError('maxlength')">El modelo no debe tener más de 64
+                    caracteres.</div>
+            </span>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-3">
+            <label for="idTipoMaquina" class="form-label required">Tipo de máquina</label>
+            <select id="selectTipoMaquina" class="form-select" formControlName="idTipoMaquina">
+                <option *ngFor="let tipo of tiposMaquina" [ngValue]="tipo.idTipo">{{ tipo.nombre }}</option>
+            </select>
+            <span class="invalid-feedback">
+                <div *ngIf="formg.controls['idTipoMaquina'].hasError('required')">Debe seleccionar un tipo.</div>
+            </span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-5 col-md-6 mb-3">
+            <label for="alturaTorre" class="form-label">Altura de torre (metros)</label>
+            <input type="number" class="form-control" id="alturaTorre" formControlName="alturaTorre"
+                [class.is-invalid]="formg.controls['alturaTorre'].errors && formg.controls['alturaTorre'].touched">
+            <span class="invalid-feedback">
+                <div *ngIf="formg.controls['alturaTorre'].hasError('required')">Debe ingresar una altura.</div>
+                <div *ngIf="formg.controls['alturaTorre'].hasError('min')">Ingrese un valor positivo</div>
+                <div *ngIf="formg.controls['alturaTorre'].hasError('max')">Superó el valor máximo.</div>
+            </span>
+        </div>
+        <div class="col-lg-5 col-md-6 mb-3">
+            <label for="capacidadCarga" class="form-label required">Capacidad de carga (kg)</label>
+            <input type="number" class="form-control" id="capacidadCarga" formControlName="capacidadCarga"
+                [class.is-invalid]="formg.controls['capacidadCarga'].errors && formg.controls['capacidadCarga'].touched">
+            <span class="invalid-feedback">
+                <div *ngIf="formg.controls['capacidadCarga'].hasError('required')">Debe ingresar un modelo.</div>
+                <div *ngIf="formg.controls['capacidadCarga'].hasError('min')">Ingrese un valor positivo</div>
+                <div *ngIf="formg.controls['capacidadCarga'].hasError('max')">Superó el valor máximo.</div>
+            </span>
+        </div>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary" (click)="edit()">Guardar</button>&nbsp;
+        <button class="btn btn-danger" (click)="cancel()">Cancelar</button>
+    </div>
+</form>

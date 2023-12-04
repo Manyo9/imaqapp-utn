@@ -1,0 +1,192 @@
+<div class="row align-items-center">
+    <h1 class="display-6 col-lg-12">Nueva solicitud de servicio</h1>
+</div>
+<div class="row">
+    <div class="col-md-8">
+        <form [formGroup]="formreq">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="nombreSolicitante" class="form-label required">Nombre del solicitante</label>
+                        <input type="text" class="form-control" id="nombreSolicitante"
+                            formControlName="nombreSolicitante"
+                            [class.is-invalid]="formreq.controls['nombreSolicitante'].errors && formreq.controls['nombreSolicitante'].touched">
+                        <span class="invalid-feedback">
+                            <div *ngIf="formreq.controls['nombreSolicitante'].hasError('required')">Debe ingresar un
+                                nombre.
+                            </div>
+                            <div *ngIf="formreq.controls['nombreSolicitante'].hasError('maxlength')">El límite es de 64
+                                caracteres.</div>
+                        </span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="razonSocial" class="form-label required">Razón social</label>
+                        <input type="text" class="form-control" id="razonSocial" formControlName="razonSocial"
+                            [class.is-invalid]="formreq.controls['razonSocial'].errors && formreq.controls['razonSocial'].touched">
+                        <span class="invalid-feedback">
+                            <div *ngIf="formreq.controls['razonSocial'].hasError('required')">Debe ingresar una razón
+                                social.
+                            </div>
+                            <div *ngIf="formreq.controls['razonSocial'].hasError('maxlength')">El límite es de 64
+                                caracteres.
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label for="telefonoContacto" class="form-label required">Telefono</label>
+                    <input type="tel" class="form-control" id="telefonoContacto" formControlName="telefonoContacto"
+                        [class.is-invalid]="formreq.controls['telefonoContacto'].errors && formreq.controls['telefonoContacto'].touched">
+                    <span class="invalid-feedback">
+                        <div *ngIf="formreq.controls['telefonoContacto'].hasError('required')">Debe ingresar un teléfono
+                            de
+                            contacto.</div>
+                        <div *ngIf="formreq.controls['telefonoContacto'].hasError('maxlength')">El límite es de 15
+                            caracteres
+                        </div>
+                    </span>
+                </div>
+                <div class="col-md-8 mb-3">
+                    <label for="emailContacto" class="form-label required">E-mail de contacto</label>
+                    <input type="email" class="form-control" id="emailContacto" formControlName="emailContacto"
+                        [class.is-invalid]="formreq.controls['emailContacto'].errors && formreq.controls['emailContacto'].touched">
+                    <span class="invalid-feedback">
+                        <div *ngIf="formreq.controls['emailContacto'].hasError('required')">Debe ingresar un e-mail de
+                            contacto.
+                        </div>
+                        <div *ngIf="formreq.controls['emailContacto'].hasError('maxlength')">El e-mail no debe tener más
+                            de 64 caracteres.</div>
+                        <div *ngIf="formreq.controls['emailContacto'].hasError('email')">Debe ingresar un email válido.
+                        </div>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <label for="comentario" class="form-label">Comentarios</label>
+                    <textarea type="text" class="form-control" id="comentario" formControlName="comentario" rows="3"
+                        [class.is-invalid]="formreq.controls['comentario'].errors && formreq.controls['comentario'].touched"></textarea>
+                    <span class="invalid-feedback">
+                        <div *ngIf="formreq.controls['comentario'].hasError('required')">Ingrese un comentario.</div>
+                        <div *ngIf="formreq.controls['comentario'].hasError('maxlength')">El límite es de 512
+                            caracteres.
+                        </div>
+                    </span>
+                    <div class="form-text">
+                        Ingrese aquí cualquier especificación sobre el servicio.
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="border border-bottom border-dark-subtle mb-2"></div>
+        <form [formGroup]="formmach">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="marcaMaquina" class="form-label required">Marca</label>
+                        <input type="text" class="form-control" id="marcaMaquina" formControlName="marcaMaquina"
+                            [class.is-invalid]="formmach.controls['marcaMaquina'].errors && formmach.controls['marcaMaquina'].touched">
+                        <span class="invalid-feedback">
+                            <div *ngIf="formmach.controls['marcaMaquina'].hasError('required')">Debe ingresar una marca.
+                            </div>
+                            <div *ngIf="formmach.controls['marcaMaquina'].hasError('maxlength')">La marca no debe tener
+                                más de 32 caracteres.</div>
+                        </span>
+                    </div>
+                    <div class="col-md-8 mb-3">
+                        <label for="modeloMaquina" class="form-label required">Modelo</label>
+                        <input type="text" class="form-control" id="modeloMaquina" formControlName="modeloMaquina"
+                            [class.is-invalid]="formmach.controls['modeloMaquina'].errors && formmach.controls['modeloMaquina'].touched">
+                        <span class="invalid-feedback">
+                            <div *ngIf="formmach.controls['modeloMaquina'].hasError('required')">Debe ingresar un
+                                modelo.</div>
+                            <div *ngIf="formmach.controls['modeloMaquina'].hasError('maxlength')">El modelo no debe
+                                tener más de 64
+                                caracteres.</div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-3 col-lg-6 mb-3">
+                    <label for="serieMaquina" class="form-label required">Serie</label>
+                    <input type="text" class="form-control" id="serieMaquina" formControlName="serieMaquina"
+                        [class.is-invalid]="formmach.controls['serieMaquina'].errors && formmach.controls['serieMaquina'].touched">
+                    <span class="invalid-feedback">
+                        <div *ngIf="formmach.controls['serieMaquina'].hasError('required')">Debe ingresar una serie.
+                        </div>
+                        <div *ngIf="formmach.controls['serieMaquina'].hasError('maxlength')">La serie no debe tener más
+                            de 20 caracteres.</div>
+                    </span>
+                </div>
+                <div class="col-xl-4 col-lg-6 mb-3">
+                    <label for="idTipoMaquina" class="form-label required">Tipo de máquina</label>
+                    <select id="selectTipoMaquina" class="form-select" formControlName="idTipoMaquina">
+                        <option value=0>Seleccione...</option>
+                        <option *ngFor="let tipo of tiposMaquina" [ngValue]="tipo.idTipo">{{ tipo.nombre }}</option>
+                    </select>
+                    <span class="invalid-feedback">
+                        <div *ngIf="formmach.controls['idTipoMaquina'].hasError('required')">Debe seleccionar un tipo.
+                        </div>
+                    </span>
+                </div>
+                <div class="col-xl-2 col-lg-6 mb-3">
+                    <label for="cantidadMaquinas" class="form-label required">Cant.</label>
+                    <input type="number" min="1" class="form-control" id="cantidadMaquinas"
+                        formControlName="cantidadMaquinas"
+                        [class.is-invalid]="formmach.controls['cantidadMaquinas'].errors && formmach.controls['cantidadMaquinas'].touched">
+                    <span class="invalid-feedback">
+                        <div *ngIf="formmach.controls['cantidadMaquinas'].hasError('required')">Debe ingresar una
+                            cantidad.</div>
+                        <div *ngIf="formmach.controls['cantidadMaquinas'].hasError('min')">Ingrese una cantidad válida.
+                        </div>
+                        <div *ngIf="formmach.controls['cantidadMaquinas'].hasError('max')">Ingrese una cantidad válida.
+                        </div>
+                    </span>
+                </div>
+                <div class="col-xl-3 col-lg-6 mb-3 d-flex align-items-end">
+                    <button class="btn btn-success" [disabled]="!formmach.valid"
+                        (click)="addMachine()">Agregar</button>&nbsp;
+                    <button class="btn btn-secondary" (click)="cleanMachineForm()">Limpiar</button>
+                </div>
+            </div>
+        </form>
+        <form [formGroup]="formserv" class="row row-cols-lg-auto align-items-end">
+            <div class="col-12 mb-3">
+                <label for="idTipoServicio" class="form-label required">Tipo de servicio</label>
+                <select id="selectTipoServicio" class="form-select" formControlName="idTipoServicio">
+                    <option value=0>Seleccione...</option>
+                    <option *ngFor="let t of tiposServicio" [ngValue]="t.idTipo">{{ t.nombre }}</option>
+                </select>
+                <span class="invalid-feedback">
+                    <div *ngIf="formserv.controls['idTipoServicio'].hasError('required')">Debe seleccionar un tipo.
+                    </div>
+                </span>
+            </div>
+            <div class="col-12 mb-3">
+                <button type="submit" class="btn btn-primary boton" (click)="save()"
+                    [disabled]="!formreq.valid || !formserv.valid || machines.length == 0">Guardar</button>&nbsp;
+                <button class="btn btn-danger boton" (click)="cancel()">Cancelar solicitud</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-md-4">
+        <h5>Maquinas agregadas</h5>
+        <div class="list-group machines-list border">
+
+            <div class="list-group-item d-flex justify-content-between align-items-center " *ngFor="let m of machines">
+                <span class="badge bg-primary rounded-pill me-4">x{{ m.cantidadMaquinas }}</span>
+                <div>
+                    <p class="mb-0">
+                        {{ m.marcaMaquina }} - {{ m.modeloMaquina }} - {{ m.serieMaquina }}
+                    </p>
+                </div>
+                <button class="boton btn btn-outline-danger bi bi-trash" (click)="removeMachine(m)"></button>
+            </div>
+
+        </div>
+    </div>
+</div>

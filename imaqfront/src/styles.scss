@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+//--------------------------------------------------------------------------------------------------------------
+
+@import './assets/css/variables';
+
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
+
+@import "./assets/css/custom.scss";
+
+

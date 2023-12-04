@@ -1,0 +1,32 @@
+.center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+#window {
+  max-width: 500px;
+  z-index: 100;
+}
+
+button {
+  height: fit-content;
+  width: fit-content;
+}
+
+.background{
+  background-image: url('../../../../assets/img/background.png');
+  background-position: center;
+  background-size: cover;
+  height: 99%;
+  width: 100%;
+  overflow: hidden;
+  position:fixed;
+  z-index: -100;
+  top: 0px;
+  left: 0px;
+  
+}

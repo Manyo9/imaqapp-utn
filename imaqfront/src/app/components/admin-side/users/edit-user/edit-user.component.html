@@ -1,0 +1,49 @@
+<div class="row align-items-center">
+    <h1 class="display-6 col-lg-12">Editar usuario</h1>
+</div>
+<form [formGroup]="formg">
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-8 mb-3">
+                <label for="email" class="form-label required">Dirección de e-mail</label>
+                <input type="email" class="form-control" id="email" formControlName="email"
+                    [class.is-invalid]="formg.controls['email'].errors && formg.controls['email'].touched">
+                <span class="invalid-feedback">
+                    <div *ngIf="formg.controls['email'].hasError('required')">Debe ingresar un e-mail</div>
+                    <div *ngIf="formg.controls['email'].hasError('maxlength')">El e-mail no debe tener
+                        más de 64 caracteres.</div>
+                    <div *ngIf="formg.controls['email'].hasError('email')">Debe ingresar un email válido.
+                    </div>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <label for="nombre" class="form-label required">Nombre(s)</label>
+                <input type="text" class="form-control" id="nombre" formControlName="nombre"
+                    [class.is-invalid]="formg.controls['nombre'].errors && formg.controls['nombre'].touched">
+                <span class="invalid-feedback">
+                    <div *ngIf="formg.controls['nombre'].hasError('required')">Debe ingresar un nombre</div>
+                    <div *ngIf="formg.controls['nombre'].hasError('maxlength')">El nombre no debe tener
+                        más de 64 caracteres.</div>
+                </span>
+            </div>
+            <div class="col-lg-4 mb-3">
+                <label for="apellido" class="form-label required">Apellido(s)</label>
+                <input type="text" class="form-control" id="apellido" formControlName="apellido"
+                    [class.is-invalid]="formg.controls['apellido'].errors && formg.controls['apellido'].touched">
+                <span class="invalid-feedback">
+                    <div *ngIf="formg.controls['apellido'].hasError('required')">Debe ingresar un apellido</div>
+                    <div *ngIf="formg.controls['apellido'].hasError('maxlength')">El apellido no debe tener
+                        más de 64 caracteres.</div>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary" (click)="edit()">Guardar</button>&nbsp;
+        <button class="btn btn-danger" (click)="cancel()">Cancelar</button>
+    </div>
+</form>

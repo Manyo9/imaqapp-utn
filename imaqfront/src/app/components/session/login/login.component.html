@@ -1,0 +1,31 @@
+<div class="background">
+</div>
+<div id="window" class="container mt-5 border border-secondary rounded bg-white p-5">
+    <h1 class="display-6 text-center">Iniciar Sesión</h1>
+    <form [formGroup]="formg">
+        <div class="mb-3">
+            <label for="usuario" class="form-label required">Nombre de usuario</label>
+            <input type="text" class="form-control" id="usuario" formControlName="usuario"
+                [class.is-invalid]="formg.controls['usuario'].errors && formg.controls['usuario'].touched">
+            <span class="invalid-feedback">
+                <div *ngIf="formg.controls['usuario'].hasError('required')">Debe ingresar un nombre de usuario.
+                </div>
+                <div *ngIf="formg.controls['usuario'].hasError('maxlength')">El nombre de usuario no debe tener
+                    más de 64 caracteres.</div>
+            </span>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label required">Contraseña</label>
+            <input type="password" class="form-control" id="password" formControlName="password"
+                [class.is-invalid]="formg.controls['password'].errors && formg.controls['password'].touched">
+            <span class="invalid-feedback">
+                <div *ngIf="formg.controls['password'].hasError('required')">Debe ingresar una contraseña</div>
+                <div *ngIf="formg.controls['password'].hasError('maxlength')">La contraseña no debe tener
+                    más de 64 caracteres.</div>
+            </span>
+        </div>
+        <button type="submit" class="btn btn-success" [disabled]="!formg.valid" (click)="logIn()">Iniciar
+            Sesión</button>
+        <button type="submit" class="btn btn-danger mx-3" (click)="cancel()">Volver</button>
+    </form>
+</div>

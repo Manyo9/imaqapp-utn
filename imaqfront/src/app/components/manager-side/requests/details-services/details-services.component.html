@@ -1,0 +1,70 @@
+<h1>Detalles de la solicitud</h1>
+<div class="row">
+    <div class="col-md-6 my-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Información de la solicitud</h5>
+                <p><strong>ID:</strong> {{ request.idSolicitud }}</p>
+                <p><strong>Estado:</strong> {{ request.estadoSolicitud }}</p>
+                <p><strong>Tipo:</strong> {{ request.tipoSolicitud }}</p>
+                <p><strong>Solicitante:</strong> {{ request.nombreSolicitante }}</p>
+                <p><strong>Razón Social:</strong> {{ request.razonSocial }}</p>
+                <p><strong>Teléfono de contacto:</strong> {{ request.telefonoContacto }}</p>
+                <p><strong>Email de contacto:</strong> {{ request.emailContacto }}</p>
+                <p><strong>Comentario:</strong> {{ request.comentario }}</p>
+                <p><strong>Fecha de solicitud:</strong> {{ request.fechaSolicitud | date: 'medium' }}</p>
+                <p *ngIf="request.fechaAprobacion"><strong>Fecha de aprobación:</strong> {{ request.fechaAprobacion |
+                    date: 'medium'}}</p>
+                <p><strong>Presupuesto:</strong> ID # {{ service.idPresupuesto || 'No asignado' }}
+                    <app-view-invoice-manager *ngIf="service.idPresupuesto" [idPresupuesto]="service.idPresupuesto!"
+                        class="mx-2"></app-view-invoice-manager>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 my-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Servicio</h5>
+                <p><strong>ID de servicio:</strong> {{ service.idServicio }}</p>
+                <p><strong>Tipo de servicio:</strong> {{ service.tipoServicio }}</p>
+            </div>
+            <div class="card-footer">
+                <h5 class="card-title">Maquinas solicitadas:</h5>
+                <div class="list-group machines-list border">
+                    <div class="list-group-item d-flex align-items-center" *ngFor="let d of details">
+                        <div>
+                            <span class="badge bg-primary rounded-pill me-4">x{{ d.cantidadMaquinas }}</span>
+                        </div>
+                        <div>
+                            <p class="my-1">
+                                {{d.tipoMaquina}} - Marca:&nbsp;{{d.marcaMaquina}} - Modelo:&nbsp;{{d.modeloMaquina}}
+                                - Serie:&nbsp;{{d.serieMaquina}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<form [formGroup]="formst">
+    <div class="form-group row">
+        <div class="col-xl-4 col-md-8 col-sm-6 mb-3">
+            <label for="idEstadoSolicitud" class="form-label">Nuevo estado:</label>
+            <select id="selectEstadoSolicitud" class="form-select" formControlName="idEstadoSolicitud">
+                <option value=0>Seleccione...</option>
+                <option *ngFor="let e of estadosSolicitud" [ngValue]="e.idEstado">{{ e.nombre }}</option>
+            </select>
+        </div>
+        <div class="col-xl-2 col-md-4 col-sm-6 d-flex align-items-end mb-3">
+            <button class="btn btn-primary" (click)="updateStatus()">Actualizar Estado</button>
+        </div>
+    </div>
+</form>
+<div class="mb-3">
+    <button class="btn btn-warning me-3 mb-3" [disabled]="service.idPresupuesto"
+        (click)="generateBudget(request.idSolicitud)">Generar presupuesto</button>
+    <button class="btn btn-danger me-3 mb-3" (click)="reject()">Rechazar</button>
+    <button class="btn btn-secondary mb-3" (click)="return()">Volver</button>
+</div>

@@ -1,0 +1,130 @@
+<div class="row align-items-center">
+    <h1 class="display-6 col-lg-12">Nuevo proveedor</h1>
+</div>
+<div class="row">
+    <div class="col-12">
+        <form [formGroup]="formg">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-5 col-md-6 mb-3">
+                        <label for="cuit" class="form-label required">CUIT (sin guiones)</label>
+                        <input type="text" class="form-control" id="cuit" formControlName="cuit"
+                            [class.is-invalid]="formg.controls['cuit'].errors && formg.controls['cuit'].touched">
+                        <span class="invalid-feedback">
+                            <div *ngIf="formg.controls['cuit'].hasError('required')">Debe ingresar un CUIT</div>
+                            <div *ngIf="formg.controls['cuit'].hasError('minlength')">Ingrese un CUIT válido.</div>
+                            <div *ngIf="formg.controls['cuit'].hasError('maxlength')">Ingrese un CUIT válido.</div>
+                        </span>
+                    </div>
+                    <div class="col-lg-5 col-md-6 mb-3">
+                        <label for="razonSocial" class="form-label required">Razón Social</label>
+                        <input type="text" class="form-control" id="razonSocial" formControlName="razonSocial"
+                            [class.is-invalid]="formg.controls['razonSocial'].errors && formg.controls['razonSocial'].touched">
+                        <span class="invalid-feedback">
+                            <div *ngIf="formg.controls['razonSocial'].hasError('required')">Debe ingresar una razón
+                                social.
+                            </div>
+                            <div *ngIf="formg.controls['razonSocial'].hasError('maxlength')">La razón social no puede
+                                tener
+                                más
+                                de 64 caracteres</div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="nombreContacto" class="form-label required">Nombre del contacto</label>
+                        <input type="text" class="form-control" id="nombreContacto" formControlName="nombreContacto"
+                            [class.is-invalid]="formg.controls['nombreContacto'].errors && formg.controls['nombreContacto'].touched">
+                        <span class="invalid-feedback">
+                            <div *ngIf="formg.controls['nombreContacto'].hasError('required')">Ingrese un nombre de
+                                contacto.
+                            </div>
+                            <div *ngIf="formg.controls['nombreContacto'].hasError('maxlength')">El nombre del contacto
+                                no
+                                puede
+                                tener más de 64 caracteres.</div>
+                        </span>
+                    </div>
+                    <div class="col-lg-3 col-md-4 mb-3">
+                        <label for="calle" class="form-label required">Calle</label>
+                        <input type="text" class="form-control" id="calle" formControlName="calle"
+                            [class.is-invalid]="formg.controls['calle'].errors && formg.controls['calle'].touched">
+                        <span class="invalid-feedback">
+                            <div *ngIf="formg.controls['calle'].hasError('required')">Ingrese un nombre de calle.
+                            </div>
+                            <div *ngIf="formg.controls['calle'].hasError('maxlength')">La calle no puede tener más
+                                de 64 caracteres.</div>
+                        </span>
+                    </div>
+                    <div class="col-lg-3 col-md-4 mb-3">
+                        <label for="numCalle" class="form-label required">N°</label>
+                        <input type="number" class="form-control" id="numCalle" formControlName="numCalle"
+                            [class.is-invalid]="formg.controls['numCalle'].errors && formg.controls['numCalle'].touched">
+                        <span class="invalid-feedback">
+                            <div *ngIf="formg.controls['numCalle'].hasError('required')">Debe ingresar número de calle.
+                            </div>
+                            <div *ngIf="formg.controls['numCalle'].hasError('min')">Ingrese un número de calle válido.
+                            </div>
+                            <div *ngIf="formg.controls['numCalle'].hasError('max')">Ingrese un número de calle válido.
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-5 col-md-6 mb-3">
+                        <label for="telefono" class="form-label required">Telefono</label>
+                        <input type="tel" class="form-control" id="telefono" formControlName="telefono"
+                            [class.is-invalid]="formg.controls['telefono'].errors && formg.controls['telefono'].touched">
+                        <span class="invalid-feedback">
+                            <div *ngIf="formg.controls['telefono'].hasError('required')">Ingrese un teléfono de
+                                contacto.
+                            </div>
+                            <div *ngIf="formg.controls['telefono'].hasError('maxlength')">El teléfono no puede tener más
+                                de 15 caracteres.</div>
+                        </span>
+                    </div>
+                    <div class="col-lg-5 col-md-6 mb-3">
+                        <label for="email" class="form-label required">E-mail</label>
+                        <input type="email" class="form-control" id="email" formControlName="email"
+                            [class.is-invalid]="formg.controls['email'].errors && formg.controls['email'].touched">
+                        <span class="invalid-feedback">
+                            <div *ngIf="formg.controls['email'].hasError('required')">Ingrese un e-mail.
+                            </div>
+                            <div *ngIf="formg.controls['email'].hasError('maxlength')">El e-mail no puede tener más de
+                                64
+                                caracteres.</div>
+                            <div *ngIf="formg.controls['email'].hasError('email')">Debe ingresar un email válido.
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-10 mb-3">
+                    <label for="observaciones" class="form-label required">Observaciones</label>
+                    <textarea type="text" class="form-control" id="observaciones" formControlName="observaciones"
+                        rows="3"
+                        [class.is-invalid]="formg.controls['observaciones'].errors && formg.controls['observaciones'].touched"></textarea>
+                    <span class="invalid-feedback">
+                        <div *ngIf="formg.controls['observaciones'].hasError('required')">Ingrese una obsevación.
+                        </div>
+                        <div *ngIf="formg.controls['observaciones'].hasError('maxlength')">La observación no puede tener
+                            más
+                            de
+                            256
+                            caracteres.</div>
+                    </span>
+                </div>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary" (click)="save()">Guardar</button>&nbsp;
+                <button class="btn btn-danger" (click)="cancel()">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>
